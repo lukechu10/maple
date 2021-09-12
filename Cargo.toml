@@ -1,19 +1,7 @@
 [workspace]
 members = [
-  "packages/sycamore",
-  "packages/sycamore-macro",
-  "packages/sycamore-reactive",
-  "packages/sycamore-router",
-  "packages/sycamore-router-macro",
-  "examples/components",
-  "examples/context",
-  "examples/counter",
-  "examples/hello",
-  "examples/higher-order-components",
-  "examples/iteration",
-  "examples/ssr",
-  "examples/todomvc",
-  "examples/tweened",
+  "packages/*",
+  "examples/*",
   "docs",
   "website",
 ]

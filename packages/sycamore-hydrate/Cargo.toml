@@ -6,26 +6,11 @@ edition = "2018"
 homepage = "https://github.com/sycamore-rs/sycamore"
 keywords = ["wasm", "gui", "reactive"]
 license = "MIT"
-name = "sycamore-macro"
+name = "sycamore-hydrate"
 readme = "../../README.md"
 repository = "https://github.com/sycamore-rs/sycamore"
 version = "0.5.2"
 
-[lib]
-proc-macro = true
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-once_cell = "1.8.0"
-proc-macro2 = "1.0.28"
-quote = "1.0.9"
-syn = { version = "1.0.74", features = ["full"] }
-
-[dev-dependencies]
-sycamore = { path = "../sycamore" }
-trybuild = "1.0.45"
-
-[features]
-default = ["hydrate"]
-hydrate = []

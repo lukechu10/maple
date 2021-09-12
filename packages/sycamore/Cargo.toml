@@ -19,6 +19,7 @@ html-escape = { version = "0.2.9", optional = true }
 indexmap = { version = "1.7.0", features = ["std"] }
 js-sys = "0.3.53"
 smallvec = "1.6.1"
+sycamore-hydrate = { path = "../sycamore-hydrate", version = "=0.5.2", optional = true }
 sycamore-macro = { path = "../sycamore-macro", version = "=0.5.2" }
 sycamore-reactive = { path = "../sycamore-reactive", version = "=0.5.2" }
 wasm-bindgen = { version = "0.2.76", features = ["enable-interning"] }
@@ -47,7 +48,8 @@ wasm-bindgen-test = "0.3.26"
 [features]
 default = ["dom"]
 dom = []
-ssr = ["html-escape"]
+hydrate = ["sycamore-hydrate"]
+ssr = ["html-escape", "hydrate"]
 serde = ["sycamore-reactive/serde"]
 
 [[bench]]

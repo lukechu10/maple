@@ -10,6 +10,7 @@
 //!   `wasm32-unknown-unknown` target.
 //! - `ssr` - Enables rendering templates to static strings (useful for Server Side Rendering /
 //!   Pre-rendering).
+//! - `hydrate` - Enables client-side hydration. If you are using Server Side Rendering, this will be enabled automatically.
 //! - `serde` - Enables serializing and deserializing `Signal`s and other wrapper types using
 //!   `serde`.
 
@@ -37,8 +38,10 @@ pub mod utils;
 /// Alias self to sycamore for proc-macros.
 extern crate self as sycamore;
 
+#[cfg(all(feature = "dom", feature = "hydrate"))]
+pub use crate::generic_node::{hydrate, hydrate_to};
 #[cfg(feature = "dom")]
-pub use crate::generic_node::{hydrate, hydrate_to, render, render_to, DomNode};
+pub use crate::generic_node::{render, render_to, DomNode};
 #[cfg(feature = "ssr")]
 pub use crate::generic_node::{render_to_string, SsrNode};
 
