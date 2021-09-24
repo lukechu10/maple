@@ -20,7 +20,7 @@
 #![deny(clippy::trait_duplication_in_bounds)]
 #![deny(clippy::type_repetition_in_bounds)]
 
-pub use sycamore_macro::{component, template};
+pub use sycamore_macro::{component, node, template};
 pub use sycamore_reactive as reactive;
 
 pub mod component;
@@ -44,7 +44,7 @@ pub use crate::generic_node::{render_to_string, SsrNode};
 
 /// The sycamore prelude.
 pub mod prelude {
-    pub use sycamore_macro::{component, template};
+    pub use sycamore_macro::{component, node, template};
 
     pub use crate::flow::{Indexed, IndexedProps, Keyed, KeyedProps};
     #[cfg(feature = "dom")]
