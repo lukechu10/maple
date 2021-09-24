@@ -9,7 +9,7 @@ mod splice;
 use attributes::*;
 use children::*;
 use component::*;
-use element::*;
+pub use element::Element;
 use splice::*;
 
 use proc_macro2::TokenStream;
@@ -139,4 +139,8 @@ impl ToTokens for HtmlRoot {
 
 pub fn template_impl(component: HtmlRoot) -> TokenStream {
     component.to_token_stream()
+}
+
+pub fn node_impl(html: Element) -> TokenStream {
+    html.to_token_stream()
 }
