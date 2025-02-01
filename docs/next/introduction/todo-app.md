@@ -305,7 +305,7 @@ so that we can easily serialize `Signal`s.
 ```bash
 cargo add serde -F derive
 cargo add serde_json
-cargo add web-sys -F Storage
+cargo add web-sys -F "Storage,Window"
 cargo add sycamore -F serde
 ```
 
@@ -313,7 +313,7 @@ Then replace the `create_signal` function call with:
 
 ```rust
 // Initialize application state from localStorage.
-let local_storage = window()
+let local_storage = window().expect("no window available")
     .local_storage()
     .unwrap()
     .expect("user has not enabled localStorage");
@@ -355,8 +355,8 @@ Here is the complete code listing for the todo app.
 
 ```rust
 use serde::{Deserialize, Serialize};
-use sycamore::prelude::*;
-use web_sys::KeyboardEvent;
+use sycamore::{prelude::*, web::events::KeyboardEvent};
+use web_sys::window;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 struct Todo {
