@@ -27,17 +27,18 @@ with `sycamore v0.5.x`).
 
 ## Creating routes
 
-Start off by adding `use sycamore_router::{Route, Router, RouterProps}` to the
+Start off by adding `use sycamore_router::{Route, Router, HistoryIntegration}` to the
 top of your source code. This imports the symbols needed to define our router.
 
 The heart of the router is an `enum`. Each variant of the `enum` represents a
 different route. To make our `enum` usable with `Router`, we will use the
-`Route` derive macro to implement the required traits for us.
+`Route` derive macro to implement the required traits for us. We will also derive the 
+`Clone` trait which allows the contents to be copied by the router.
 
 Here is an example:
 
 ```rust
-#[derive(Route)]
+#[derive(Route, Clone)]
 enum AppRoutes {
     #[to("/")]
     Index,
@@ -175,7 +176,7 @@ Routes can also be nested! The following code will route any url to `/route/..`
 to `Nested`.
 
 ```rust
-#[derive(Route)]
+#[derive(Route, Clone)]
 enum Nested {
     #[to("/nested")]
     Nested,
@@ -183,7 +184,7 @@ enum Nested {
     NotFound,
 }
 
-#[derive(Route)]
+#[derive(Route, Clone)]
 enum Admin {
     #[to("/console")]
     Console,
@@ -191,7 +192,7 @@ enum Admin {
     NotFound,
 }
 
-#[derive(Route)]
+#[derive(Route, Clone)]
 enum Routes {
     #[to("/")]
     Home,
@@ -215,7 +216,7 @@ view! {
         view=|route: ReadSignal<AppRoutes>| {
             view! {
                 div(class="app") {
-                    (match route.get() {
+                    (match route.get_clone() {
                         AppRoutes::Index => view! {
                             "This is the index page"
                         },
@@ -265,7 +266,7 @@ view! {
         view=|route: ReadSignal<AppRoutes>| {
             view! {
                 div(class="app") {
-                    (match route.get() {
+                    (match route.get_clone() {
                         AppRoutes::Index => view! {
                             "This is the index page"
                         },
@@ -303,3 +304,8 @@ view! {
     a(href="path", rel="external") { "Path" }
 }
 ```
+
+## Examples
+An example of a router can be found in the `/examples` folder in the repository.
+
+[Click Here](https://github.com/sycamore-rs/sycamore/blob/main/examples/router/src/main.rs) to be taken to it.
